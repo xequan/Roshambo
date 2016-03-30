@@ -13,8 +13,8 @@ public class RoshamboApp {
         Player opponent;
         String continueString;
         String chooseOpponent;
-        String choosePlayerMove = "";
-        String choosePlayerName = "";
+        String choosePlayerMove;
+        String choosePlayerName;
         String[] validChoices = {"r", "p", "s"};
 
         gameConsole.print("Welcome to the game of Roshambo\n");
@@ -34,17 +34,19 @@ public class RoshamboApp {
         }
 
 
-
         do {
 
             choosePlayerMove = gameConsole.getChoiceArray("Rock, paper, or scissors? (r/p/s):", validChoices);
             player.setRoshamboValue(choosePlayerMove);
             opponent.generateRoshambo();
-            System.out.println(player.getPlayerName() + ":" + player.getRoshamboValue() + "\n" +
+            gameConsole.println(player.getPlayerName() + ":" + player.getRoshamboValue() + "\n" +
                     opponent.getPlayerName() + ":" + opponent.getRoshamboValue());
             getWinner(player, opponent, gameConsole);
             continueString = gameConsole.getChoiceString("Play Again? (y/n): ", "y", "n");
         } while (continueString.equalsIgnoreCase("y"));
+
+        gameConsole.println(player.getPlayerName() + ": " + player.getScore() + "\n" +
+                opponent.getPlayerName() + ": " + opponent.getScore());
 
         gameConsole.close();
     }
@@ -55,21 +57,27 @@ public class RoshamboApp {
         } else if (player.getRoshamboValue().equalsIgnoreCase(Roshambo.ROCK.toString()) &&
                 opponent.getRoshamboValue().equalsIgnoreCase(Roshambo.SCISSORS.toString())) {
             gameConsole.println(player.getPlayerName() + " wins");
+            player.incrementScore();
         } else if (player.getRoshamboValue().equalsIgnoreCase(Roshambo.ROCK.toString()) &&
                 opponent.getRoshamboValue().equalsIgnoreCase(Roshambo.PAPER.toString())) {
             gameConsole.println(opponent.getPlayerName() + " wins");
+            opponent.incrementScore();
         } else if (player.getRoshamboValue().equalsIgnoreCase(Roshambo.PAPER.toString()) &&
                 opponent.getRoshamboValue().equalsIgnoreCase(Roshambo.SCISSORS.toString())) {
             gameConsole.println(opponent.getPlayerName() + " wins");
+            opponent.incrementScore();
         } else if (player.getRoshamboValue().equalsIgnoreCase(Roshambo.PAPER.toString()) &&
                 opponent.getRoshamboValue().equalsIgnoreCase(Roshambo.ROCK.toString())) {
             gameConsole.println(player.getPlayerName() + " wins");
+            player.incrementScore();
         } else if (player.getRoshamboValue().equalsIgnoreCase(Roshambo.SCISSORS.toString()) &&
                 opponent.getRoshamboValue().equalsIgnoreCase(Roshambo.PAPER.toString())) {
             gameConsole.println(player.getPlayerName() + " wins");
+            player.incrementScore();
         } else if (player.getRoshamboValue().equalsIgnoreCase(Roshambo.SCISSORS.toString()) &&
                 opponent.getRoshamboValue().equalsIgnoreCase(Roshambo.ROCK.toString())) {
             gameConsole.println(opponent.getPlayerName() + " wins");
+            opponent.incrementScore();
         }
 
     }

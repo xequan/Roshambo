@@ -5,10 +5,6 @@ package main.business;
  */
 public class Bart extends Player {
 
-    public Bart() {
-        this.playerName = "Bart";
-    }
-
     @Override
     public void generateRoshambo() {
         this.roshamboValue = Roshambo.ROCK.toString();

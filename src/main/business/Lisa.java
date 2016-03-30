@@ -9,7 +9,7 @@ public class Lisa extends Player {
 
     @Override
     public void generateRoshambo() {
-        String returnString = "";
+
         Random rand = new Random();
 
         int randomNum = rand.nextInt(3) + 1;

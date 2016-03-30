@@ -6,6 +6,7 @@ package main.business;
 public abstract class Player {
     String playerName;
     String roshamboValue;
+    int score = 0;
 
     public String getPlayerName() {
         return playerName;
@@ -16,7 +17,7 @@ public abstract class Player {
     }
 
     public String getRoshamboValue() {
-        return roshamboValue;
+        return this.roshamboValue;
     }
 
     public void setRoshamboValue(String move) {
@@ -27,6 +28,14 @@ public abstract class Player {
         } else if (move.equalsIgnoreCase("p")) {
             this.roshamboValue = Roshambo.PAPER.toString();
         }
+    }
+
+    public void incrementScore() {
+        this.score++;
+    }
+
+    public int getScore() {
+        return this.score;
     }
 
     public abstract void generateRoshambo();
